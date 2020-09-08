@@ -24,6 +24,8 @@ public class ScheduleMaster {
 	@JsonProperty("_id")
 	private String id;
 	
+	 @JsonProperty("datauploadstatus")
+	 private String datauploadstatus;
 	
 	@JsonProperty("scheduleId")
 	private String scheduleId;
@@ -36,12 +38,12 @@ public class ScheduleMaster {
 	
 	
 	@JsonProperty("scheduleDestination")
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinProperty(name="scheduleDestination")
 	private List<Airport> scheduleDestination;
 	
 	@JsonProperty("operatingFlight")
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinProperty(name="operatingFlight")
 	private List<OperatingFlight> operatingFlight;
 	
@@ -53,9 +55,27 @@ public class ScheduleMaster {
 	private String scheduleActiveEndDate;
 	@JsonProperty("carrierCode")
 	private String carrierCode;
+	
+	@JsonProperty("noOfPasenger")
+	private String noOfPasenger;
+	
+	@JsonProperty("noOfCrew")
+	private String noOfCrew;
+	
+	@JsonProperty("interval")
+	private String interval;
+	
+	@JsonProperty("scheduleInterval")
+	private String scheduleInterval;
+	
+	@JsonProperty("noOfPilot")
+	private String noOfPilot;
 
 	@JsonProperty("flightLegs")
 	private List<FlightLeg> flightLegs;
+
+	@JsonProperty("boardingStatus")
+	private String boardingStatus;
 	
 	@JsonProperty("_id")
 	public String getId() {
@@ -132,7 +152,61 @@ public class ScheduleMaster {
 	public void setOperatingFlight(List<OperatingFlight> operatingFlight) {
 		this.operatingFlight = operatingFlight;
 	}
-	
-	
+
+	public String getInterval() {
+		return interval;
+	}
+
+	public void setInterval(String interval) {
+		this.interval = interval;
+	}
+
+	public String getNoOfPilot() {
+		return noOfPilot;
+	}
+
+	public void setNoOfPilot(String noOfPilot) {
+		this.noOfPilot = noOfPilot;
+	}
+
+	public String getScheduleInterval() {
+		return scheduleInterval;
+	}
+
+	public void setScheduleInterval(String scheduleInterval) {
+		this.scheduleInterval = scheduleInterval;
+	}
+
+	public String getNoOfPasenger() {
+		return noOfPasenger;
+	}
+
+	public void setNoOfPasenger(String noOfPasenger) {
+		this.noOfPasenger = noOfPasenger;
+	}
+
+	public String getNoOfCrew() {
+		return noOfCrew;
+	}
+
+	public void setNoOfCrew(String noOfCrew) {
+		this.noOfCrew = noOfCrew;
+	}
+
+	public String getDatauploadstatus() {
+		return datauploadstatus;
+	}
+
+	public void setDatauploadstatus(String datauploadstatus) {
+		this.datauploadstatus = datauploadstatus;
+	}
+
+	public void setBoardingStatus(String boardingStatus) {
+		this.boardingStatus = boardingStatus;
+	}
+
+	public String getBoardingStatus() {
+		return this.boardingStatus;
+	}	
 	
 }

@@ -5,9 +5,15 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ScheduleMasterRequest {
+	
+	@JsonProperty("TotalNumberOfScheduleCreated")
+	private String noOfSchedular;
 
 	@JsonProperty("scheduleMasterId")
 	private String scheduleMasterId;
+	
+	 @JsonProperty("datauploadstatus")
+	 private String datauploadstatus;
 	
 	@JsonProperty("scheduleInterval")
 	private String scheduleInterval;
@@ -41,6 +47,9 @@ public class ScheduleMasterRequest {
 	
 	@JsonProperty("noOfCrew")
 	private String noOfCrew;
+
+	@JsonProperty("boardingStatus")
+	private String boardingStatus;
 	
 	public String getScheduleInterval() {
 		return scheduleInterval;
@@ -113,6 +122,25 @@ public class ScheduleMasterRequest {
 	}
 	public void setScheduleMasterId(String scheduleMasterId) {
 		this.scheduleMasterId = scheduleMasterId;
+	}
+	public String getNoOfSchedular() {
+		return noOfSchedular;
+	}
+	public void setNoOfSchedular(String noOfSchedular) {
+		this.noOfSchedular = noOfSchedular;
+	}
+	public String getDatauploadstatus() {
+		return datauploadstatus;
+	}
+	public void setDatauploadstatus(String datauploadstatus) {
+		this.datauploadstatus = datauploadstatus;
+	}
+	public String getBoardingStatus() {
+		return boardingStatus;
+	}
+
+	public void setBoardingStatus(String boardingStatus) {
+		this.boardingStatus = boardingStatus;
 	}
 	
 	

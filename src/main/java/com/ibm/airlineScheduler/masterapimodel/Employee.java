@@ -45,6 +45,13 @@ public class Employee {
 	@JsonProperty("languages")
 	private List<Language> languages;
 	
+	@JsonProperty("role")
+	private String role;
+
+
+	
+	
+	
 	@JsonProperty("_id")
 	public String getId() {
 		return id;
@@ -150,6 +157,15 @@ public class Employee {
 	public void setLanguages(List<Language> languages) {
 		this.languages = languages;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	
 	
 	

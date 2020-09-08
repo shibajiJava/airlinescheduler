@@ -6,16 +6,18 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.ibm.airlineScheduler.masterapimodel.OperatingFlight;
+import com.ibm.airlineScheduler.masterapimodel.UserAuth;
 @Repository
-public class OperatingFlightDALImpl implements OperatingFlightDAL {
+public class UserAuthDALImpl implements UserAuthDAL{
+
+	
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
 	@Override
-	public OperatingFlight getoperatingFlight(String id) {
+	public UserAuth getUserAuthByName(String userName) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("_id").is(id));
-		return mongoTemplate.findOne(query, OperatingFlight.class);
+		query.addCriteria(Criteria.where("userName").is(userName));
+		return mongoTemplate.findOne(query, UserAuth.class);
 	}
 }

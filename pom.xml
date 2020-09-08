@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ibm.airlineScheduler</groupId>
 	<artifactId>airlineScheduler</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>airlineScheduler</name>
 	<description>project for airlineScheduler</description>
 
@@ -22,6 +22,14 @@
  
  
 	<dependencies>
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5</version>
+</dependency>
+	
 	
 			<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
 		<dependency>
@@ -108,7 +116,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<finalName>airlineSchedular</finalName>
+		<finalName>airlineSchedularCC</finalName>
 	</build>
 
 

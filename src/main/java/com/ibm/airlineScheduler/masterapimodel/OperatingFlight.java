@@ -12,6 +12,7 @@ import io.github.kaiso.relmongo.annotation.FetchType;
 import io.github.kaiso.relmongo.annotation.JoinProperty;
 import io.github.kaiso.relmongo.annotation.OneToMany;
 @Document(collection = "operatingFlight")
+
 public class OperatingFlight {
 
 
@@ -25,6 +26,8 @@ public class OperatingFlight {
 	private String mfClassName;
 	@JsonProperty("flightNumber")
 	private String flightNumber;
+	@JsonProperty("boardingStatus")
+	private String boardingStatus;
 	@JsonProperty("departureInfo")
 	private DepartureInfo departureInfo;
 	@JsonProperty("arrivalInfo")
@@ -32,19 +35,31 @@ public class OperatingFlight {
 	@JsonProperty("flightLegs")
 	private List<FlightLegOperatingFlight> flightLegs;
 	
+	@JsonProperty("pnrAssignmentDetails")
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinProperty(name="pnrNumber")
+	private List<PnrDetails> pnrDetails;
+	
 	@JsonProperty("assignedEmployees")
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinProperty(name="assignedEmployees")
-	private List<Employee> assignedEmployees;
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinProperty(name="employeeId")
+	private List<Employee> employee;
 	
 	@JsonProperty("assignedPassengers")
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinProperty(name="assignedPassengers")
-	private List<Passenger> assignedPassengers;
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinProperty(name="passengerId")
+	private List<Passenger> passenger;
 	
 	private String destination;
+	private String scheduleSource;	
 	
 	
+	public List<PnrDetails> getPnrDetails() {
+		return pnrDetails;
+	}
+	public void setPnrDetails(List<PnrDetails> pnrDetails) {
+		this.pnrDetails = pnrDetails;
+	}
 	public String getMfClassName() {
 		return mfClassName;
 	}
@@ -72,6 +87,12 @@ public class OperatingFlight {
 	public void setFlightNumber(String flightNumber) {
 		this.flightNumber = flightNumber;
 	}
+	public String getBoardingStatus() {
+		return boardingStatus;
+	}
+	public void setBoardingStatus(String boardingStatus) {
+		this.boardingStatus = boardingStatus;
+	}
 	public DepartureInfo getDepartureInfo() {
 		return departureInfo;
 	}
@@ -90,17 +111,24 @@ public class OperatingFlight {
 	public void setFlightLegs(List<FlightLegOperatingFlight> flightLegs) {
 		this.flightLegs = flightLegs;
 	}
-	public List<Employee> getAssignedEmployees() {
-		return assignedEmployees;
+	
+	public List<Employee> getEmployee() {
+		return employee;
 	}
-	public void setAssignedEmployees(List<Employee> assignedEmployees) {
-		this.assignedEmployees = assignedEmployees;
+	public void setEmployee(List<Employee> employee) {
+		this.employee = employee;
 	}
-	public List<Passenger> getAssignedPassengers() {
-		return assignedPassengers;
+	public List<Passenger> getPassenger() {
+		return passenger;
 	}
-	public void setAssignedPassengers(List<Passenger> assignedPassengers) {
-		this.assignedPassengers = assignedPassengers;
+	public void setPassenger(List<Passenger> passenger) {
+		this.passenger = passenger;
+	}
+	public String getScheduleSource() {
+		return scheduleSource;
+	}
+	public void setScheduleSource(String scheduleSource) {
+		this.scheduleSource = scheduleSource;
 	}
 	public String getDestination() {
 		return destination;
@@ -108,7 +136,10 @@ public class OperatingFlight {
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-	
-	
-	
+	public void setSource(String scheduleSource) {
+		this.scheduleSource = scheduleSource;
+	}
+	public String getSource() {
+		return this.scheduleSource;
+	}
 }

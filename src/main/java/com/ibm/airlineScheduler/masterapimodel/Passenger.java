@@ -30,6 +30,14 @@ public class Passenger {
 	@JsonProperty("contactInfo")
 	private ContactInfo contactInfo;
 	
+	@JsonProperty("pnr")
+	private String pnr;
+	
+	@JsonProperty("seatNumber")
+	private String seatNumber;
+	
+	@JsonProperty("class")
+	private  String pclass; 
 	
 
 	public String getId() {
@@ -93,6 +101,36 @@ public class Passenger {
 	}
 	public void setContactInfo(ContactInfo contactInfo) {
 		this.contactInfo = contactInfo;
+	}
+
+
+	public String getPnr() {
+		return pnr;
+	}
+
+
+	public void setPnr(String pnr) {
+		this.pnr = pnr;
+	}
+
+
+	public String getSeatNumber() {
+		return seatNumber;
+	}
+
+
+	public void setSeatNumber(String seatNumber) {
+		this.seatNumber = seatNumber;
+	}
+
+
+	public String getPclass() {
+		return pclass;
+	}
+
+
+	public void setPclass(String pclass) {
+		this.pclass = pclass;
 	}
 	
 	

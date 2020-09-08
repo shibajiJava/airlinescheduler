@@ -6,16 +6,20 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.ibm.airlineScheduler.masterapimodel.OperatingFlight;
+import com.ibm.airlineScheduler.masterapimodel.ScheduleMaster;
 @Repository
-public class OperatingFlightDALImpl implements OperatingFlightDAL {
+public class ScheduleMasterRepositoryDALImpl implements ScheduleMasterRepositoryDAL {
+
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
+
 	@Override
-	public OperatingFlight getoperatingFlight(String id) {
+	public ScheduleMaster getSchedulerById(String schedulerId) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("_id").is(id));
-		return mongoTemplate.findOne(query, OperatingFlight.class);
+		query.addCriteria(Criteria.where("_id").is(schedulerId));
+		return mongoTemplate.findOne(query, ScheduleMaster.class);
 	}
+	
+	
+
 }
