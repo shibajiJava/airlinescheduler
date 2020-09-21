@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.format.DateTimeFormat;
@@ -55,6 +55,10 @@ import com.sun.jdi.InternalException;
 
 @Service
 public class MasterAPIServicesImpl implements MasterAPIServices {
+	
+	
+    @Value("${spring.application.kafkaendpint}")
+	private String kafkaEndpoint;
 
 	private  AirLineRepository airLineRepository;
 	
@@ -168,9 +172,13 @@ public class MasterAPIServicesImpl implements MasterAPIServices {
 	        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
 	        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_OCTET_STREAM));
 	        customRestTemplate.airlineRestTemplate().getMessageConverters().add(mappingJackson2HttpMessageConverter);
-
-	        ResponseEntity<String> response = customRestTemplate.airlineRestTemplate().exchange("https://159.122.174.61:32336/sendpost", HttpMethod.POST, requestEntity,String.class);
 	        
+	        if(kafkaEndpoint!=null) {
+	        	customRestTemplate.airlineRestTemplate().exchange(kafkaEndpoint, HttpMethod.POST, requestEntity,String.class);
+	        }
+	        else {
+	        	throw new Exception("Kafka End point not found");
+	        }
 	       
 			
 			/*
